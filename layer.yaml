@@ -1,0 +1,4 @@
+includes:
+  - 'layer:basic'
+  - 'interface:prometheus'
+repo: github.com:tasdomas/juju-charm-prometheus-client

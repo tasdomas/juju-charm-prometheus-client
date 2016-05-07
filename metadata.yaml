@@ -1,0 +1,13 @@
+name: prometheus-client
+summary: Example prometheus client.
+maintainer: Domas Monkus <domas@monkus.lt>
+description: Sample prometheus client.
+tags:
+  - monitoring
+  - examples
+categories:
+  - misc
+subordinate: false
+provides:
+  prometheus:
+    interface: prometheus
