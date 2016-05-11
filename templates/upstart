@@ -1,0 +1,9 @@
+description "prometheus service"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+respawn
+
+chdir /opt/
+
+exec /opt/random -listen-address {{ addr }}
