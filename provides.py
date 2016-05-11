@@ -1,4 +1,6 @@
 from charms.reactive import RelationBase, scopes, hook
+from charmhelpers.core import hookenv
+
 
 class PrometheusProvides(RelationBase):
     scope = scopes.UNIT
@@ -11,9 +13,9 @@ class PrometheusProvides(RelationBase):
     def broken(self):
         self.remove_state('{relation_name}.available')
         
-    def configure(self, port,path='/metrics', scrape_interval=None, scrape_timeout=None):
+    def configure(self, port, path='/metrics', scrape_interval=None, scrape_timeout=None):
         relation_info = {
-            'hostname': hookenv.unit_get('private-address'),
+            'hostname': hookenv.unit_private_ip(),
             'port': port,
             'metrics_path': path,
         }
@@ -22,4 +24,3 @@ class PrometheusProvides(RelationBase):
         if scrape_timeout is not None:
             relation_info['scrape_timeout'] = scrape_timeout
         self.set_remote(**relation_info)
-                
