@@ -39,7 +39,7 @@ class PrometheusRequires(RelationBase):
                 # ...
             ]
         """
-        targets = {}
+        services = {}
         for conv in self.conversations():
             service_name = conv.scope.split('/')[0]
             service = services.setdefault(service_name, {
