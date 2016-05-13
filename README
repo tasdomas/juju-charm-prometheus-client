@@ -1,0 +1,14 @@
+This is a charm that uses the sample prometheus client from https://github.com/prometheus/client_golang/tree/master/examples/random.
+Its main purpose is to demonstrate and test the usage of the prometheus interface layer (https://github.com/tasdomas/juju-interface-prometheus).
+
+To use the charm, make sure that the ```charm``` tool is installed. Then:
+```
+$ make all
+$ juju deploy --series trusty $(JUJU_REPOSITORY)/trusty/prometheus-client
+```
+
+To start collecting metrics from this service with a deployed prometheus instance (https://github.com/tasdomas/juju-charm-prometheus), simply
+relate the two services together:
+```
+$ juju add-relation prometheus-client:prometheus prometheus:scrape
+```
