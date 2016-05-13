@@ -23,22 +23,22 @@ def install():
 @hook('start')
 def start():
     host.service_start(SVC)
-    set_state('prometheus.started')
+    set_state('reporter.started')
 
 @hook('stop')
 def stop():
     host.service_stop(SVC)
-    remove_state('prometheus.started')
+    remove_state('reporter.started')
 
 def restart():
     if host.service_running(SVC):
-        remove_state('prometheus.started')
+        remove_state('reporter.started')
         host.service_stop(SVC)
     host.service_start(SVC)
-    set_state('prometheus.started')
+    set_state('reporter.started')
 
-@when('prometheus.started')
-@when('prometheus.available')
+@when('reporter.started')
+@when('prometheus.changed')
 def update_prometheus_scrape_targets(prometheus):
     prometheus.configure(port='8080')
 
